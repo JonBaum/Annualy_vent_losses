@@ -21,29 +21,29 @@ def calculate_n(building_type, building_age, apartment_quantity, apartment_size,
     clustered["weights"] = np.array([[27],[47],[49],[70],[48],[49],[20],[54]])
     clustered["temp_ambient"] = {}
     clustered["temp_ambient"] = np.array([   [-7.962,-8.567,-9.071,-9.474,-9.172,-9.575,-9.172,-9.575,-9.273,-3.830,
-                                                     -0.806,1.209,0.403,1.310,0.605,0.000,-1.613,-2.318,-2.822,-3.024,
-                                                     -3.225,-3.326,-3.124,-2.822],
-                                                     [3.024,2.016,2.117,3.528,4.233,5.543,4.838,4.435,4.233,8.164,	
-                                                      11.087,13.304,13.002,12.699,10.986,10.281,8.668,8.869,7.055,4.536,	
-                                                      3.427,3.024,2.721,3.830],
-                                                     [14.413,13.808,12.901,12.901,11.389,11.792,13.707,16.529,19.755,22.678,
-                                                      23.585,24.089,24.996,26.004,26.205,25.298,25.500,24.693,24.492,22.476,	
-                                                      20.763,19.352,17.638,17.537],
-                                                     [5.644,4.536,4.334,4.233,4.233,3.528,3.931,5.342,8.769,11.994,	
-                                                      14.211,14.514,15.522,15.925,15.522,15.320,14.010,12.599,10.281,8.265,	
-                                                      7.962,7.055,6.249,5.140],
-                                                     [8.970,9.071,9.071,8.668,8.769,8.063,8.567,9.474,12.296,14.211,	
-                                                      14.514,15.723,16.429,16.933,17.033,16.832,15.219,14.211,13.607,13.203,	
-                                                      12.800,12.397,12.196,11.692],
-                                                     [9.373,8.869,8.366,8.668,8.466,8.668,8.567,8.869,9.777,10.482,	
-                                                      11.288,11.288,11.591,10.885,11.490,11.591,11.389,11.087,10.986,9.575,	
-                                                      8.970,8.668,8.466,8.769],
-                                                     [0.706,0.504,-0.101,0.000,-0.706,-0.403,-0.302,-0.302,-0.101,0.101,
-                                                      0.302,0.706,1.310,1.310,1.008,0.907,0.907,0.403,0.605,0.605,	
-                                                      0.605,0.302,1.008,0.605],
-                                                     [-1.310,-1.310,-1.411,-1.814,-1.713,-1.512,-1.713,-1.713,-1.713,-1.613,	
-                                                      -1.713,-1.613,-1.411,-1.209,-1.109,-1.915,-2.318,-2.419,-2.520,-2.520,	
-                                                      -2.621,-2.520,-2.621,-2.822]])
+                                             -0.806,1.209,0.403,1.310,0.605,0.000,-1.613,-2.318,-2.822,-3.024,
+                                             -3.225,-3.326,-3.124,-2.822],
+                                             [3.024,2.016,2.117,3.528,4.233,5.543,4.838,4.435,4.233,8.164,	
+                                              11.087,13.304,13.002,12.699,10.986,10.281,8.668,8.869,7.055,4.536,	
+                                              3.427,3.024,2.721,3.830],
+                                             [14.413,13.808,12.901,12.901,11.389,11.792,13.707,16.529,19.755,22.678,
+                                              23.585,24.089,24.996,26.004,26.205,25.298,25.500,24.693,24.492,22.476,	
+                                              20.763,19.352,17.638,17.537],
+                                             [5.644,4.536,4.334,4.233,4.233,3.528,3.931,5.342,8.769,11.994,	
+                                              14.211,14.514,15.522,15.925,15.522,15.320,14.010,12.599,10.281,8.265,	
+                                              7.962,7.055,6.249,5.140],
+                                             [8.970,9.071,9.071,8.668,8.769,8.063,8.567,9.474,12.296,14.211,	
+                                              14.514,15.723,16.429,16.933,17.033,16.832,15.219,14.211,13.607,13.203,	
+                                              12.800,12.397,12.196,11.692],
+                                             [9.373,8.869,8.366,8.668,8.466,8.668,8.567,8.869,9.777,10.482,	
+                                              11.288,11.288,11.591,10.885,11.490,11.591,11.389,11.087,10.986,9.575,	
+                                              8.970,8.668,8.466,8.769],
+                                             [0.706,0.504,-0.101,0.000,-0.706,-0.403,-0.302,-0.302,-0.101,0.101,
+                                              0.302,0.706,1.310,1.310,1.008,0.907,0.907,0.403,0.605,0.605,	
+                                              0.605,0.302,1.008,0.605],
+                                             [-1.310,-1.310,-1.411,-1.814,-1.713,-1.512,-1.713,-1.713,-1.713,-1.613,	
+                                              -1.713,-1.613,-1.411,-1.209,-1.109,-1.915,-2.318,-2.419,-2.520,-2.520,	
+                                              -2.621,-2.520,-2.621,-2.822]])
     clustered["wind_speed"] = pd.read_csv("raw_inputs/vent/wind_speed.csv", sep=";", header=None, engine = "python")
     
     clustered["temp_delta"] ={}
@@ -111,70 +111,55 @@ def calculate_n(building_type, building_age, apartment_quantity, apartment_size,
             else:
                 air_flow[d,t] = air_flow2[d,t]
     
-    factor_q_v = building["dimensions"]["Area"]/(building["quantity"]*70)*vent["sci"]["rho_a_ref"]*vent["tec"]["A_w_tot"]/2         # ohne 3600 wie in Norm (mit 3600 ist der stündliche Volumenstrom)
+    factor_q_v = 3600*building["dimensions"]["Area"]/(70)*vent["tec"]["A_w_tot"]/2         # ohne 3600 wie in Norm (mit 3600 ist der stündliche Volumenstrom)
     
     
-    Q_v_arg = {}
-    Q_v_arg_abs = 0
+    Q_window_stream = {}
     for d in days:                           # einströmender Luftmassenstrom
-        Q_v_arg_day = 0
         for t in time_steps:
-            Q_v_arg[d,t] = (factor_q_v*air_flow[d,t]*df_windows[d][t])
-            Q_v_arg_day += Q_v_arg[d,t]
+            Q_window_stream[d,t] = (factor_q_v*air_flow[d,t]*df_windows[d][t]) * clustered["weights"][d,0] * (clustered["temp_ambient"][d,t]+273.15)/(273.15+20)
             
-        Q_v_arg_abs += Q_v_arg_day*clustered["weights"]
+    Q_window_total = sum(Q_window_stream[key] for key in Q_window_stream)
         
-    n_arg = Q_v_arg_abs / (360*24) / (building["dimensions"]["Area"]*building["dimensions"]["Volume"])
+    n_window = Q_window_total/(364 * 24 * building["dimensions"]["Area"]*building["dimensions"]["Volume"])
     
-    Q_v_arg_in = {}
+    Q_window_heat = {}
     for d in days:
         for t in time_steps:
-            Q_v_arg_in[d,t] = (Q_v_arg[d,t]*vent["sci"]["cp_air"]*clustered["temp_delta"][d,t])
+            Q_window_heat[d,t] = (Q_window_stream[d,t]*vent["sci"]["cp_air"]*clustered["temp_delta"][d,t])
     
-    Q_v_Inf = {}
-    Q_v_Inf_abs = 0
-    
+    Q_vent_Inf_stream = {}
     for d in days:
-        
-        Q_v_Inf_day = 0
-        
         for t in time_steps:
-            
-            Q_v_Inf[d,t] = (vent["tec"]["e_z"]*vent["sci"]["rho_a_ref"]/1000 * n_50 *
+            Q_vent_Inf_stream[d,t] = (vent["tec"]["e_z"] * n_50 * clustered["weights"][d,0] *
                                                          building["dimensions"]["Area"]*building["dimensions"]["Volume"])
-            
-            Q_v_Inf_day += Q_v_Inf[d,t]
-            
-        Q_v_Inf_abs += Q_v_Inf_day * clustered["weights"]
     
-    n_inf = Q_v_Inf_abs / (365*24) / (building["dimensions"]["Area"]*building["dimensions"]["Volume"])
+    Q_Inf_total = sum(Q_vent_Inf_stream[key] for key in Q_vent_Inf_stream)
     
-    n_ges = (Q_v_Inf_abs+Q_v_arg_abs) / (365*24) / (building["dimensions"]["Area"]*building["dimensions"]["Volume"])                  
-            
-    Q_v_Inf_wirk = {}
+    n_inf = Q_Inf_total/(364 * 24 * building["dimensions"]["Area"]*building["dimensions"]["Volume"])
+    
+    Q_vent_Inf_heat = {}
     
     for d in days:
         for t in time_steps:
-            
-            Q_v_Inf_wirk[d,t] = Q_v_Inf[d,t] * vent["sci"]["cp_air"]*clustered["temp_delta"][d,t]
+            Q_vent_Inf_heat[d,t] = Q_vent_Inf_stream[d,t] * vent["sci"]["cp_air"]*clustered["temp_delta"][d,t]
             
     
     Q_vent_loss = {}
-    
     for d in days:
         for t in time_steps:
-            
-            Q_vent_loss[d,t] = ((1-vent["eco"]["phi_heat_recovery"]*x_vent)*Q_v_arg_in[d,t]+Q_v_Inf_wirk[d,t])
+            Q_vent_loss[d,t] = ((1-vent["eco"]["phi_heat_recovery"]*x_vent)*Q_window_heat[d,t]+Q_vent_Inf_heat[d,t])
+        
                                                      
-    return (n_inf, n_arg, n_ges)
+    return (n_window, n_inf, temp_average, df_windows, clustered)
 
 
-building_type = "ClusterA"
+building_type = "ClusterB"
 building_age = "0 1957"
-apartment_quantity = 1
-apartment_size = 110
+apartment_quantity = 25
+apartment_size = 80
 n_50 = 4.5
 x_vent = 0
 
-n_inf, n_arg, n_ges = calculate_n(building_type, building_age, apartment_quantity, apartment_size, n_50, x_vent)
+n_window, n_inf, temp_average, df_windows, clustered = calculate_n(building_type, building_age, apartment_quantity, apartment_size, n_50, x_vent)
                                                      
